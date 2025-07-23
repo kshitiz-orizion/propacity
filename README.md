@@ -4,9 +4,9 @@ Fetaures implemented:
 
 /* smart authetication flow */
 
-Login/Logout validations
-Persistent auth state
-Protected routing
+  1. Login/Logout validations
+  2. Persistent auth state
+ 3.Protected routing
 
 
 /* feed screen */
