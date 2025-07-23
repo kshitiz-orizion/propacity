@@ -1,5 +1,5 @@
-This is a reat-native project built with windows and tested on one plus device
-
+This is a reat-native project built with windows and tested on one plus device 
+API Used: https://dummyjson.com/
 Fetaures implemented:
 
 /* smart authetication flow */
