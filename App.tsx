@@ -1,28 +1,53 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// App.js
+import React, { useEffect, useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import LoginScreen from './src/screens/LoginScreen';
+import TabNavigator from './src/hooks/TabNavigator';
+import { Provider } from 'react-redux';
+import { store } from './src/store/store';
+
+import { ActivityIndicator } from 'react-native-paper';
+
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+  const [loading,setLoading] = useState(true);
+  const [authenticated,setAuthenticated] = useState<string | null>();
+
+
+  useEffect(()=>{
+    fetchLogin()
+  },[])
+
+  const fetchLogin = async() =>{
+    const value = await AsyncStorage.getItem('isAuthenticated');
+    setAuthenticated(value)
+    setLoading(false);
+  }
+
+  if(loading) return <ActivityIndicator  style={{ marginTop: 40 }}/>
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+    <NavigationContainer>
+      <Provider store={store} >
+        <Stack.Navigator initialRouteName={authenticated ? "Home" : "Login"}>
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ title: "Welcome to Propacity", headerShown:false}} />
+          <Stack.Screen
+            name="Home"
+            component={TabNavigator}
+            options={{ title: 'Welcome', headerShown: false }}
+          />
+        </Stack.Navigator>
+      </Provider>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;
