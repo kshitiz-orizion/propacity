@@ -6,29 +6,29 @@ Fetaures implemented:
 
   1. Login/Logout validations
   2. Persistent auth state
- 3.Protected routing
+  3. Protected routing
 
 
 /* feed screen */
 
-Infinite list 
-pull to refresh 
-search and filter capabilities
+  1. Infinite list 
+  2. pull to refresh 
+  3.search and filter capabilities
 
 
 /* state management */
 
-reduxjs/toolkit with rtx query
-optimistic updates
-offline strategy
+  1.  reduxjs/toolkit with rtx query
+  2.  optimistic updates
+  3.  offline strategy
 
 /* interactive post creation */
-multistep post composer
-rich text editor
-image upload simulation
+  1.  multistep post composer
+  2.  rich text editor
+  3.  image upload simulation
 
 /* tech stack */
 
-react-native
-typescript
+    react-native
+    typescript
 
